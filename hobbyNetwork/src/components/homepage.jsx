@@ -50,8 +50,6 @@ const features = [
   { title: "Hobby Challenges", description: "Earn points and badges for completing challenges." },
   { title: "Workshops & Events", description: "Attend live workshops hosted by experts." },
   { title: "Skill-Based Connections", description: "Connect with users based on complementary skills." },
-  { title: "Personalized Feed", description: "See trending posts and upcoming events tailored to your hobbies." },
-  { title: "Hobby Marketplace", description: "Buy and sell hobby-related items securely." }
 ];
 
 export default Home;
