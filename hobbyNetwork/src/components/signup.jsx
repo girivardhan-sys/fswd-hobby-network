@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User } from 'lucide-react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +11,25 @@ const SignupPage = () => {
     password: '',
     confirmPassword: '',
   });
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle signup logic here
+    try {
+      const response = await axios.post('https://hobby-server-3.onrender.com/users', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      });
+      console.log('Signup successful:', response.data);
+      navigate("/home");
+      // Redirect or show success message
+    } catch (error) {
+      console.error('Signup error:', error);
+      // Handle error, show error message
+    }
   };
 
   const handleChange = (e) => {

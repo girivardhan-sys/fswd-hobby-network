@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LogIn, Mail, Lock } from 'lucide-react';
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
+    try {
+      const response = await axios.post('https://hobby-server-3.onrender.com/users', {
+        email,
+        password
+      });
+      console.log(response.data);
+      console.log('Login successful:', response.data);
+      navigate("/home")
+      
+      // Handle successful login here (e.g., redirect to dashboard, store token, etc.)
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle login error here (e.g., show error message to user)
+    }
   };
 
   return (
